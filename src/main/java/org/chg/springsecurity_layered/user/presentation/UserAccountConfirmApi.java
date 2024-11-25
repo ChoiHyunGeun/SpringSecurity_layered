@@ -1,8 +1,6 @@
 package org.chg.springsecurity_layered.user.presentation;
 
 import org.chg.springsecurity_layered.user.application.UserFacade;
-import org.chg.springsecurity_layered.user.domain.UserInfoReader;
-import org.chg.springsecurity_layered.user.domain.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

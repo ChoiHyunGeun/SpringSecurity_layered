@@ -1,6 +1,7 @@
 package org.chg.springsecurity_layered.user.presentation;
 
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
