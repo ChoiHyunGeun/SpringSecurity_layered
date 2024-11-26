@@ -2,6 +2,7 @@ package org.chg.springsecurity_layered.user.presentation.apis;
 
 import org.chg.springsecurity_layered.user.application.UserFacade;
 import org.chg.springsecurity_layered.user.domain.User;
+import org.chg.springsecurity_layered.user.domain.exception.UserNotFoundException;
 import org.chg.springsecurity_layered.user.presentation.UserRequest;
 import org.chg.springsecurity_layered.user.presentation.UserResponse;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ public final class UserAccountConfirmApi {
     public ResponseEntity<UserResponse> findUserInfo(@RequestBody UserRequest userRequest) {
         Optional<User> user = userFacade.findById(userRequest.getSeq());
 
-        return new ResponseEntity<>(user.orElseThrow().toDto(), HttpStatus.OK);
+        return new ResponseEntity<>(user.orElseThrow(UserNotFoundException::new).toDto(), HttpStatus.OK);
     }
 
     @PostMapping("/register")
