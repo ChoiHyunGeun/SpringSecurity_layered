@@ -1,5 +1,6 @@
 package org.chg.springsecurity_layered.user.presentation.apis;
 
+import org.chg.springsecurity_layered.common.command.ResponseCommand;
 import org.chg.springsecurity_layered.user.application.facade.UserManager;
 import org.chg.springsecurity_layered.user.domain.User;
 import org.chg.springsecurity_layered.user.domain.exception.UserNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RequestMapping("/user")
@@ -32,21 +34,38 @@ public final class UserAccountConfirmApi {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
+    public ResponseEntity<ResponseCommand> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         userManager.save(userRegisterRequest.toCommand(userRegisterRequest));
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(
+                ResponseCommand.builder()
+                        .code(200)
+                        .message("SUCCESS")
+                        .timestamp(LocalDateTime.now())
+                        .build(), HttpStatus.OK
+        );
     }
 
     @PostMapping("/delete")
-    public ResponseEntity<UserResponse> userDelete(@RequestBody UserRegisterRequest userRegisterRequest) {
+    public ResponseEntity<ResponseCommand> userDelete(@RequestBody UserRegisterRequest userRegisterRequest) {
         userManager.delete(userRegisterRequest.getSeq());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(
+                ResponseCommand.builder()
+                        .code(200)
+                        .message("SUCCESS")
+                        .timestamp(LocalDateTime.now())
+                        .build(), HttpStatus.OK
+        );
     }
 
     @PostMapping("/update")
-    public ResponseEntity<UserResponse> userUpdate(@RequestBody UserUpdateRequest userUpdateRequest) {
+    public ResponseEntity<ResponseCommand> userUpdate(@RequestBody UserUpdateRequest userUpdateRequest) {
         userManager.update(userUpdateRequest.toCommand(userUpdateRequest));
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(
+                ResponseCommand.builder()
+                        .code(200)
+                        .message("SUCCESS")
+                        .timestamp(LocalDateTime.now())
+                        .build(), HttpStatus.OK
+        );
     }
 }
