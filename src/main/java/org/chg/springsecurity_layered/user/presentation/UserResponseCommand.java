@@ -5,12 +5,12 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class UserResponse {
+public class UserResponseCommand {
     int seq;
     String userId;
     String userRole;
 
-    public UserResponse(int seq, String userId, String userRole) {
+    public UserResponseCommand(int seq, String userId, String userRole) {
         this.seq = seq;
         this.userId = userId;
         this.userRole = userRole;

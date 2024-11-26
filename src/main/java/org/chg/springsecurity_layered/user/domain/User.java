@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.chg.springsecurity_layered.user.presentation.UserResponse;
+import org.chg.springsecurity_layered.user.presentation.UserResponseCommand;
 
 @Builder
 @Table(name = "USER")
@@ -37,8 +37,9 @@ public class User {
         this.userRole = userRole;
     }
 
-    public UserResponse toDto() {
-        return UserResponse.builder()
+    public UserResponseCommand toCommand() {
+        return UserResponseCommand.builder()
+                .seq(this.seq)
                 .userId(this.username)
                 .userRole(this.userRole)
                 .build();

@@ -5,7 +5,7 @@ import org.chg.springsecurity_layered.user.application.facade.UserManager;
 import org.chg.springsecurity_layered.user.domain.User;
 import org.chg.springsecurity_layered.user.domain.exception.UserNotFoundException;
 import org.chg.springsecurity_layered.user.presentation.UserRegisterRequest;
-import org.chg.springsecurity_layered.user.presentation.UserResponse;
+import org.chg.springsecurity_layered.user.presentation.UserResponseCommand;
 import org.chg.springsecurity_layered.user.presentation.UserUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +27,10 @@ public final class UserAccountConfirmApi {
 
     @ResponseBody
     @GetMapping("/userInfo")
-    public ResponseEntity<UserResponse> findUserInfo(@RequestBody UserRegisterRequest userRegisterRequest) {
+    public ResponseEntity<UserResponseCommand> findUserInfo(@RequestBody UserRegisterRequest userRegisterRequest) {
         Optional<User> user = userManager.findById(userRegisterRequest.getSeq());
 
-        return new ResponseEntity<>(user.orElseThrow(UserNotFoundException::new).toDto(), HttpStatus.OK);
+        return new ResponseEntity<>(user.orElseThrow(UserNotFoundException::new).toCommand(), HttpStatus.OK);
     }
 
     @PostMapping("/register")
