@@ -1,6 +1,6 @@
 package org.chg.springsecurity_layered.user.infrastructure.config;
 
-import org.chg.springsecurity_layered.user.application.UserFacade;
+import org.chg.springsecurity_layered.user.application.facade.UserManager;
 import org.chg.springsecurity_layered.user.presentation.UserAuth;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -50,8 +50,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(UserFacade UserFacade){
-        return username -> UserFacade
+    public UserDetailsService userDetailsService(UserManager UserManager){
+        return username -> UserManager
                 .findByUsername(username)
                 .map(user -> UserAuth.builder()
                         .username(user.getUsername())
