@@ -1,4 +1,4 @@
-package org.chg.springsecurity_layered.user.presentation;
+package org.chg.springsecurity_layered.user.presentation.apis;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

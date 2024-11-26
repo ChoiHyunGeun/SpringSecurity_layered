@@ -1,7 +1,12 @@
 package org.chg.springsecurity_layered.user.domain;
 
-import org.chg.springsecurity_layered.user.presentation.UserRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository {
+    void save(User user);
+    Optional<User> findById(int seq);
+    Optional<User> findByUsername(String userId);
+    void deleteById(int seq);
+    User getReferenceById(int seq);
+    Boolean existsById(int seq);
 }

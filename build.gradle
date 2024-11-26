@@ -23,6 +23,7 @@ repositories {
     mavenCentral()
 }
 
+// 버전 명시
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'

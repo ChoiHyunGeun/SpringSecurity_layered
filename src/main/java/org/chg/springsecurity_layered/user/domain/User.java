@@ -1,13 +1,11 @@
 package org.chg.springsecurity_layered.user.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.chg.springsecurity_layered.user.presentation.UserResponse;
 
 @Builder
 @Table(name = "USER")
@@ -17,8 +15,12 @@ import lombok.ToString;
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SEQ")
+    int seq;
+
     @Column(name = "USER_ID")
-    String userId;
+    String username;
 
     @Column(name = "PASSWORD")
     String password;
@@ -28,9 +30,17 @@ public class User {
 
     public User() {}
 
-    public User(String userId, String password, String userRole) {
-        this.userId = userId;
+    public User(int seq, String username, String password, String userRole) {
+        this.seq = seq;
+        this.username = username;
         this.password = password;
         this.userRole = userRole;
+    }
+
+    public UserResponse toDto() {
+        return UserResponse.builder()
+                .userId(this.username)
+                .userRole(this.userRole)
+                .build();
     }
 }

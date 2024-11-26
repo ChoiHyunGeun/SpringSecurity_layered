@@ -7,13 +7,14 @@ import org.chg.springsecurity_layered.user.domain.User;
 @Setter
 @Getter
 public class UserRequest {
+    int seq;
     String userId;
     String password;
     String userRole;
 
     public static User toEntity(UserRequest userRequest) {
         return User.builder()
-                .userId(userRequest.getUserId())
+                .username(userRequest.getUserId())
                 .password(userRequest.getPassword())
                 .userRole(userRequest.getUserRole())
                 .build();
